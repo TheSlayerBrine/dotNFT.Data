@@ -1,0 +1,14 @@
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\bin\Debug\net7.0\dotNFT.Data.deps.json
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\bin\Debug\net7.0\dotNFT.Data.runtimeconfig.json
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\bin\Debug\net7.0\dotNFT.Data.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\bin\Debug\net7.0\dotNFT.Data.pdb
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.csproj.AssemblyReference.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.AssemblyInfoInputs.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.AssemblyInfo.cs
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.csproj.CoreCompileInputs.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\refint\dotNFT.Data.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.pdb
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\dotNFT.Data.genruntimeconfig.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Data\obj\Debug\net7.0\ref\dotNFT.Data.dll

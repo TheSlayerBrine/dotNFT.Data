@@ -1,0 +1,17 @@
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Services.deps.json
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Services.runtimeconfig.json
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Services.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Services.pdb
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Data.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\bin\Debug\net7.0\dotNFT.Data.pdb
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.csproj.AssemblyReference.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.AssemblyInfoInputs.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.AssemblyInfo.cs
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.csproj.CoreCompileInputs.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.csproj.CopyComplete
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\refint\dotNFT.Services.dll
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.pdb
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\dotNFT.Services.genruntimeconfig.cache
+C:\Users\cgame\Desktop\FII PRACTIC\Expert C#\Projects\dotNFT.Data\dotNFT.Services\obj\Debug\net7.0\ref\dotNFT.Services.dll
