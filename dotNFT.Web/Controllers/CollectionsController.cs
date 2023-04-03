@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotNFT.Data;
 using dotNFT.Models;
+using dotNFT.Data.Entities;
 
 namespace dotNFT.Controllers
 {
@@ -23,16 +24,18 @@ namespace dotNFT.Controllers
         public async Task<IActionResult> Index()
         {
             var x = await _context.Collections.ToListAsync();
-            var model = x.Select(entity => new dotNFT.Models.CollectionViewModel { Description = entity.Description,
+            var model = x.Select(entity => new dotNFT.Models.CollectionViewModel
+            {
+                Description = entity.Description,
                 Id = entity.Id,
-            Name = entity.Name,
+                Name = entity.Name,
                 Logo = entity.Logo
 
             }).ToList();
-            
-              return _context.Collections != null ? 
-                          View(model) :
-                          Problem("Entity set 'AppDbContext.Collections'  is null.");
+
+            return _context.Collections != null ?
+                        View(model) :
+                        Problem("Entity set 'AppDbContext.Collections'  is null.");
         }
 
         // GET: Collections/Details/5
@@ -50,7 +53,15 @@ namespace dotNFT.Controllers
                 return NotFound();
             }
 
-            return View(collection);
+            var colllectionViewModel = new CollectionViewModel
+            {
+                Id = id.Value,
+                Logo = collection.Logo,
+                Name = collection.Name,
+                Description = collection.Description,
+            };
+
+            return View(colllectionViewModel);
         }
 
         // GET: Collections/Create
@@ -64,15 +75,17 @@ namespace dotNFT.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Logo,Name,Description")] CollectionViewModel collection)
+        public async Task<IActionResult> Create([FromForm] CollectionViewModel collection)
         {
-            if (ModelState.IsValid)
+            var collectionEntity = new Collection
             {
-                _context.Add(collection);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(collection);
+                Logo = collection.Logo,
+                Name = collection.Name,
+                Description = collection.Description,
+            };
+            _context.Add(collectionEntity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Collections/Edit/5
@@ -88,7 +101,15 @@ namespace dotNFT.Controllers
             {
                 return NotFound();
             }
-            return View(collection);
+            var colllectionViewModel = new CollectionViewModel
+            {
+                Id = id.Value,
+                Logo = collection.Logo,
+                Name = collection.Name,
+                Description = collection.Description,
+            };
+
+            return View(colllectionViewModel);
         }
 
         // POST: Collections/Edit/5
@@ -103,27 +124,31 @@ namespace dotNFT.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
+                var colllectionEntity = new Collection
                 {
-                    _context.Update(collection);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CollectionExists(collection.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                    Id = id,
+                    Logo = collection.Logo,
+                    Name = collection.Name,
+                    Description = collection.Description,
+                };
+                _context.Update(colllectionEntity);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+
             }
-            return View(collection);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CollectionExists(collection.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         // GET: Collections/Delete/5
@@ -140,8 +165,16 @@ namespace dotNFT.Controllers
             {
                 return NotFound();
             }
+            var colllectionViewModel = new CollectionViewModel
+            {
+                Id = id.Value,
+                Logo = collection.Logo,
+                Name = collection.Name,
+                Description = collection.Description,
+            };
 
-            return View(collection);
+
+            return View(colllectionViewModel);
         }
 
         // POST: Collections/Delete/5
@@ -158,14 +191,14 @@ namespace dotNFT.Controllers
             {
                 _context.Collections.Remove(collection);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CollectionExists(int id)
         {
-          return (_context.Collections?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Collections?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

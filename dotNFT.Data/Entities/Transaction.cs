@@ -8,8 +8,10 @@ namespace dotNFT.Data.Entities
         public int Id { get; set; }
         public string TransactionHash { get; set; }
         public User UserSeller { get; set; }
-        public User UserBuyer { get; set; }
+        public int UserSellerId { get; set; }
+        public int UserBuyerId { get; set; }
         public NFT NFTTransferred { get; set; }
+        public int NftId { get; set; }
         public DateTime TransactionDate { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
@@ -25,5 +27,9 @@ namespace dotNFT.Data.Entities
                 return GasFee + PricePaidForNFT;
             }
         }
+
+        [NotMapped]
+        public User UserBuyer { get; set; }
+
     }
 }

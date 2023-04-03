@@ -5,8 +5,6 @@ namespace dotNFT.Models
 {
     public class CollectionViewModel 
     {
-
-        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Collection Logo")]

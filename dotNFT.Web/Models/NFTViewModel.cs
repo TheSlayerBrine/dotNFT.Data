@@ -11,7 +11,7 @@ namespace dotNFT.Models
 
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public decimal Price { get; set; }
         public string ImageURL { get; set; }
         public DateTime MintDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -23,7 +23,7 @@ namespace dotNFT.Models
         //Collection
         public int CollectionId { get; set; }
         public Collection Collection { get; set; }
-
+        public IFormFile Image { get; set; }
         public Wallet Wallet { get; set; }
         public NFTCategory Category { get; set; }
     }

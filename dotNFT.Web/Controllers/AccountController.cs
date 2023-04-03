@@ -92,11 +92,11 @@ namespace dotNFT.Web.Controllers
             {
                 FirstName = registerModel.FirstName,
                 LastName = registerModel.LastName,
+                UserName = registerModel.UserName,
                 Email = registerModel.Email,
                 PasswordHash = hash.Hash,
                 PasswordSalt = hash.Salt
             });
-            _context.SaveChanges();
 
             await SignInAsync(registerModel.Email);
             return RedirectToAction(nameof(Index));

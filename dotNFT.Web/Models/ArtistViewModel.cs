@@ -20,7 +20,6 @@ namespace dotNFT.Models
         [Required(ErrorMessage = "Biography is required")]
         public string Bio { get; set; }
 
-        //Relationships
-        public List<ArtistNFT> ArtistsNFTs { get; set; }
+       
     }
 }

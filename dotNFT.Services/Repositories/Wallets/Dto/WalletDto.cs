@@ -10,7 +10,7 @@ namespace dotNFT.Data.Entities
         public string Name { get; set; }    
         public string Address { get; set; }
         public Network Network { get; set; }
-        public float Balance { get; set; }
+        public decimal Balance { get; set; }
         public string SecretPassPhrase { get; set; }
         public IList<NFT> NFTs { get; set; }
     }

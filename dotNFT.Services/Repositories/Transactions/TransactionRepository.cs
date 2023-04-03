@@ -1,11 +1,4 @@
 ﻿using dotNFT.Data.Entities;
-using dotNFT.Services.Repositories.Collections;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using dotNFT.Data;
 
 namespace dotNFT.Services.Repositories.Transactions
@@ -26,6 +19,9 @@ namespace dotNFT.Services.Repositories.Transactions
                 TransactionHash = transactionDto.TransactionHash,
                 UserSeller = transactionDto.UserSeller,
                 UserBuyer = transactionDto.UserBuyer,
+                UserSellerId = transactionDto.UserSellerId,
+                UserBuyerId = transactionDto.UserBuyerId,
+                NftId = transactionDto.NftId,
                 NFTTransferred = transactionDto.NFTTransferred,
                 TransactionDate = transactionDto.TransactionDate,
                 PricePaidForNFT = transactionDto.PricePaidForNFT,
@@ -44,6 +40,9 @@ namespace dotNFT.Services.Repositories.Transactions
                 TransactionHash = t.TransactionHash,
                 UserSeller = t.UserSeller,
                 UserBuyer = t.UserBuyer,
+                NftId = t.NftId,
+                UserSellerId = t.UserSellerId,
+                UserBuyerId = t.UserBuyerId,
                 NFTTransferred = t.NFTTransferred,
                 TransactionDate = t.TransactionDate,
                 PricePaidForNFT = t.PricePaidForNFT,
@@ -62,8 +61,11 @@ namespace dotNFT.Services.Repositories.Transactions
                 TransactionHash = transaction.TransactionHash,
                 UserSeller = transaction.UserSeller,
                 UserBuyer = transaction.UserBuyer,
+                UserSellerId = transaction.UserSellerId,
+                UserBuyerId = transaction.UserBuyerId,
                 NFTTransferred = transaction.NFTTransferred,
                 TransactionDate = transaction.TransactionDate,
+                NftId = transaction.NftId,
                 PricePaidForNFT = transaction.PricePaidForNFT,
                 GasFee = transaction.GasFee
             };
@@ -78,8 +80,11 @@ namespace dotNFT.Services.Repositories.Transactions
                 TransactionHash = t.TransactionHash,
                 UserSeller = t.UserSeller,
                 UserBuyer = t.UserBuyer,
+                UserSellerId = t.UserSellerId,
+                UserBuyerId = t.UserBuyerId,
                 NFTTransferred = t.NFTTransferred,
                 TransactionDate = t.TransactionDate,
+                NftId = t.NftId,
                 PricePaidForNFT = t.PricePaidForNFT,
                 GasFee = t.GasFee
             }).ToList();
@@ -89,17 +94,20 @@ namespace dotNFT.Services.Repositories.Transactions
         public List<TransactionDto> GetTransactionsByNFTId(int nftId)
         {
             var transactions = _context.Transactions.Where(t => t.NFTTransferred.Id == nftId)
-.Select(t => new TransactionDto
-{
-    TransactionHash = t.TransactionHash,
-    UserSeller = t.UserSeller,
-    UserBuyer = t.UserBuyer,
-    NFTTransferred = t.NFTTransferred,
-    TransactionDate = t.TransactionDate,
-    PricePaidForNFT = t.PricePaidForNFT,
-    GasFee = t.GasFee
-})
-.ToList();
+                .Select(t => new TransactionDto
+                {
+                    TransactionHash = t.TransactionHash,
+                    UserSeller = t.UserSeller,
+                    UserBuyer = t.UserBuyer,
+                    UserSellerId = t.UserSellerId,
+                    UserBuyerId = t.UserBuyerId,
+                    NFTTransferred = t.NFTTransferred,
+                    NftId = t.NftId,
+                    TransactionDate = t.TransactionDate,
+                    PricePaidForNFT = t.PricePaidForNFT,
+                    GasFee = t.GasFee
+                })
+                .ToList();
             return transactions;
         }
     }

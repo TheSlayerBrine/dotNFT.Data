@@ -5,7 +5,6 @@ using dotNFT.Services.Repositories;
 using dotNFT.Services.Repositories.Artists;
 using dotNFT.Services.Repositories.Collections;
 using dotNFT.Services.Repositories.NFTs;
-using dotNFT.Services.Repositories.ShoppingCartItems;
 using dotNFT.Services.Repositories.Transactions;
 using dotNFT.Services.Repositories.Users;
 using dotNFT.Services.Repositories.Wallets;
@@ -23,7 +22,6 @@ namespace dotNFT.Services
             IArtistRepository artistRepository,
             ICollectionRepository collectionRepository,
             INFTRepository nftRepository,
-            IShoppingCartRepository shoppingCartItemRepository,
             ITransactionRepository transactionRepository,
             IUserRepository userRepository,
             IWalletRepository walletRepository)
@@ -32,7 +30,6 @@ namespace dotNFT.Services
             Artists = artistRepository;
             Collections = collectionRepository;
             NFTs = nftRepository;
-            ShoppingCartItems = shoppingCartItemRepository;
             Transactions = transactionRepository;
             Users = userRepository;
             Wallets = walletRepository;
@@ -41,7 +38,6 @@ namespace dotNFT.Services
         public IArtistRepository Artists { get; }
         public ICollectionRepository Collections { get; }
         public INFTRepository NFTs { get; }
-        public IShoppingCartRepository ShoppingCartItems { get; }
         public ITransactionRepository Transactions { get; }
         public IUserRepository Users { get; }
         public IWalletRepository Wallets { get; }
@@ -49,6 +45,11 @@ namespace dotNFT.Services
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
         }
 
         public async Task BeginTransactionAsync()

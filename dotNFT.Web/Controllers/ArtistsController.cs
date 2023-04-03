@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotNFT.Data;
 using dotNFT.Models;
+using dotNFT.Data.Entities;
 
 namespace dotNFT.Controllers
 {
@@ -22,9 +23,21 @@ namespace dotNFT.Controllers
         // GET: Artists
         public async Task<IActionResult> Index()
         {
-              return _context.Artists != null ? 
-                          View(await _context.Artists.ToListAsync()) :
-                          Problem("Entity set 'AppDbContext.Artists'  is null.");
+            var artists = await _context.Artists.ToListAsync();
+
+            if(artists is null)
+            {
+                return NotFound();
+            }
+
+            var artistsViewModel = artists.Select(a => new ArtistViewModel {
+                Id = a.Id,
+                ProfilePictureURL = a.ProfilePictureURL,
+                FullName = a.ArtistName,
+                Bio = a.Bio,
+            });
+
+            return View(artistsViewModel);
         }
 
         // GET: Artists/Details/5
@@ -60,7 +73,15 @@ namespace dotNFT.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(artist);
+                var artistEntity = new Artist
+                {
+                    Id = artist.Id,
+                    ProfilePictureURL = artist.ProfilePictureURL,
+                    ArtistName = artist.FullName,
+                    Bio = artist.Bio,
+
+                };
+                _context.Add(artistEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

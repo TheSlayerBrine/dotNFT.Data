@@ -4,7 +4,6 @@ using dotNFT.Services.PasswordServices;
 using dotNFT.Services.Repositories.Artists;
 using dotNFT.Services.Repositories.Collections;
 using dotNFT.Services.Repositories.NFTs;
-using dotNFT.Services.Repositories.ShoppingCartItems;
 using dotNFT.Services.Repositories.Transactions;
 using dotNFT.Services.Repositories.Users;
 using dotNFT.Services.Repositories.Wallets;
@@ -26,17 +25,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add DbContext
-builder.Services.AddDbContext<AppDbContext>();
 builder.Services
-    .AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("DefaultConnectionString"))
-    .AddScoped<IUnitOfWork, UnitOfWork> ()
+    .AddDbContext<AppDbContext>()
+    /*.AddSqlServer<AppDbContext>(builder.Configuration.GetConnectionString("Data Source=DESKTOP-NFKHDAA\\SQLEXPRESS01;Initial Catalog=dotNFT;Integrated Security=True;TrustServerCertificate=True"))*/
+    .AddScoped<ITransactionRepository, TransactionRepository>()
     .AddScoped<IArtistRepository, ArtistRepository>()
     .AddScoped<ICollectionRepository, CollectionRepository>()
     .AddScoped<INFTRepository, NFTRepository>()
-    .AddScoped<IShoppingCartRepository, ShoppingCartRepository>()
-    .AddScoped<ITransactionRepository, TransactionRepository>()
-    .AddScoped<IWalletRepository, WalletRepository>();
+    .AddScoped<IWalletRepository, WalletRepository>()
+    .AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.AddDistributedMemoryCache();
+ 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.IsEssential = true;
+});
 
 // Add repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -84,7 +89,7 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication();

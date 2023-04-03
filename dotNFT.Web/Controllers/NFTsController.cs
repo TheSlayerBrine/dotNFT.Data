@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using dotNFT.Data;
 using dotNFT.Models;
+using dotNFT.Data.Entities;
 
 namespace dotNFT.Controllers
 {
@@ -22,9 +23,22 @@ namespace dotNFT.Controllers
         // GET: NFTs
         public async Task<IActionResult> Index()
         {
-            var nfts = await _context.NFTs.Include(n => n.Collection)
-                .ToListAsync();
-            return View(nfts);
+            var nfts = await _context.NFTs.ToListAsync();
+            if (nfts == null)
+            {
+                return NotFound();
+            }
+            var nftsViewModel = nfts.Select(n => new NFTViewModel
+            {
+                Name = n.Name,
+                Description = n.Description,
+                Price = n.Price,
+                ImageURL = n.ImageURL,
+                MintDate = n.MintDate,
+                EndDate = n.EndDate,
+                Category = n.Category,
+            });
+            return View(nftsViewModel);
         }
 
         // GET: NFTs/Details/5
@@ -49,6 +63,7 @@ namespace dotNFT.Controllers
         // GET: NFTs/Create
         public IActionResult Create()
         {
+
             ViewData["CollectionId"] = new SelectList(_context.Collections, "Id", "Description");
             return View();
         }
@@ -58,16 +73,33 @@ namespace dotNFT.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,ImageURL,MintDate,EndDate,CollectionId,NFTCategory")] NFTViewModel nFT)
+        public async Task<IActionResult> Create(NFTViewModel nFT, IFormFile imageFile)
         {
-            if (ModelState.IsValid)
+            // Save the image to a folder in the wwwroot directory
+            if (imageFile != null && imageFile.Length > 0)
             {
-                _context.Add(nFT);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(imageFile.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await imageFile.CopyToAsync(stream);
+                }
+                nFT.ImageURL = "/images/" + fileName;
             }
-            ViewData["CollectionId"] = new SelectList(_context.Collections, "Id", "Description", nFT.CollectionId);
-            return View(nFT);
+            nFT.Category = NFTCategory.Action;
+            var nftEnttiy = new NFT
+            {
+                Name = nFT.Name,
+                Price = nFT.Price,
+                ImageURL = nFT.ImageURL,
+                Description = nFT.Description,
+                MintDate = nFT.MintDate,
+                EndDate = nFT.EndDate,
+                CollectionId = nFT.CollectionId,
+            };
+            _context.Add(nftEnttiy);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: NFTs/Edit/5
@@ -156,14 +188,14 @@ namespace dotNFT.Controllers
             {
                 _context.NFTs.Remove(nFT);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool NFTExists(int id)
         {
-          return (_context.NFTs?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.NFTs?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

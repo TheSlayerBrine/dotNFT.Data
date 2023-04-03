@@ -58,6 +58,7 @@ namespace FIIPracticCars.Web.Controllers
             {
                 FirstName = createUserViewModel.FirstName,
                 LastName = createUserViewModel.LastName,
+                UserName = createUserViewModel.UserName,
                 Email = createUserViewModel.Email,
                 PasswordHash = createUserViewModel.Password
             };

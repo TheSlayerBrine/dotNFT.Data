@@ -13,6 +13,8 @@ namespace dotNFT.Data.Entities
         public string PasswordSalt { get; set; }
         public DateTime? BirthDate { get; set; }
         public DateTime? RegistrationDate { get; set; }
-        public IList<Wallet> Wallets { get; set; }
+        public List<Transaction> Transactions { get; set; }
+        public Wallet Wallet { get; set; }
+        public int WalletId { get; set; }
     }
 }

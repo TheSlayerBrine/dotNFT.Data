@@ -40,6 +40,7 @@ namespace dotNFT.Services.Repositories.NFTs
                 MintDate    = nftDto.MintDate,
                 EndDate = nftDto.EndDate,
                 Category = nftDto.Category,
+               
             };
           
 
@@ -68,7 +69,14 @@ namespace dotNFT.Services.Repositories.NFTs
             return _context.NFTs
                 .Select(n => new NFTDto
                 {
-                   
+                    Name = n.Name,
+                    Description = n.Description,
+                    Price = n.Price,
+                    ImageURL = n.ImageURL,
+                    MintDate = n.MintDate,
+                    EndDate = n.EndDate,
+                    Category = n.Category,
+                    
                 })
                 .ToList();
         }
@@ -83,7 +91,15 @@ namespace dotNFT.Services.Repositories.NFTs
 
             var nftDto = new NFTDto
             {
-                
+                Name = nft.Name,
+                Description = nft.Description,
+                Price = nft.Price,
+                ImageURL = nft.ImageURL,
+                MintDate = nft.MintDate,
+                EndDate = nft.EndDate,
+                Category = nft.Category,
+               
+
             };
 
             return nftDto;
@@ -95,7 +111,16 @@ namespace dotNFT.Services.Repositories.NFTs
             return _context.NFTs
                .Where(n => n.Name.Contains(searchTerm))
                .Select(n => new NFTDto
-               {})
+               {
+                   Name = n.Name,
+                   Description = n.Description,
+                   Price = n.Price,
+                   ImageURL = n.ImageURL,
+                   MintDate = n.MintDate,
+                   EndDate = n.EndDate,
+                   Category = n.Category,
+                 
+               })
                .ToList();
         }
 
@@ -117,6 +142,7 @@ namespace dotNFT.Services.Repositories.NFTs
             nftToUpdate.MintDate = nftDto.MintDate;
             nftToUpdate.EndDate = nftDto.EndDate;
             nftToUpdate.Category = nftDto.Category;
+
 
             if (!nftToUpdate.IsAvailableForSale)
             {

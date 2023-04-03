@@ -11,6 +11,7 @@ namespace dotNFT.Data.Entities
        
         public int Id { get; set; }
         public NFT NFT { get; set; }
-        public string ShoppingCartId { get; set; }
+        public int ShoppingCartId { get; set; }
+        public int Amount { get; set; }
     }
 }
